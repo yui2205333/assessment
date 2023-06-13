@@ -13,14 +13,29 @@ assessmentButton.onclick=()=>{//function()と同義→アロー関数
 
 //診断結果表示エリアの作成
 resultDivided.innerText='';//診断結果表示エリアの内側の文字列を空文字列に変更→診断結果表示エリアの子どもの要素を全削除
-const header=document.createElement('h3');//要素を作成する
-header.innerText='診断結果';//内側のテキスト
-resultDivided.appendChild(header);//子を追加する
 
-const paragragh=document.createElement('h3');
-const result=assessment(userName);
-paragragh.innerText=result;
-resultDivided.appendChild(paragragh);
+//headerDividedの作成
+const headerDivided=document.createElement('div');
+headerDivided.setAttribute('class','card-header');
+headerDivided.innerText='診断結果';
+
+//bodyDividedの作成
+const bodyDivided=document.createElement('div');
+bodyDivided.setAttribute('class','card-body');
+
+const paragraph = document.createElement('p');
+  paragraph.setAttribute('class', 'card-text');
+  const result = assessment(userName);
+  paragraph.innerText = result;
+  bodyDivided.appendChild(paragraph);
+
+  // resultDivided に Bootstrap のスタイルを適用する
+  resultDivided.setAttribute('class', 'card');
+  resultDivided.setAttribute('style', 'max-width: 700px;')
+
+  // headerDivided と bodyDivided を resultDivided に差し込む
+  resultDivided.appendChild(headerDivided);
+  resultDivided.appendChild(bodyDivided);
 
 //ツイートエリアの作成
 tweetDivided.innerText='';
